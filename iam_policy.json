@@ -15,7 +15,7 @@
             ],
             "Effect": "Allow",
             "Resource": [
-                "arn:aws:cloudformation:*:863243263380:stack/*"
+                "arn:aws:cloudformation:*:{account_id}:stack/*"
             ]
         },
         {
@@ -38,8 +38,8 @@
             ],
             "Effect": "Allow",
             "Resource": [
-                "arn:aws:iam::863243263380:policy/*",
-                "arn:aws:iam::863243263380:role/cdk-*"
+                "arn:aws:iam::{account_id}:policy/*",
+                "arn:aws:iam::{account_id}:role/cdk-*"
             ]
         },
         {
@@ -55,8 +55,18 @@
             ],
             "Effect": "Allow",
             "Resource": [
-                "arn:aws:s3:::cdk-*",
-                "arn:aws:s3:::*-loka-*"
+                "arn:aws:s3:::cdk-*"
+            ]
+        },
+        {
+            "Action": [
+                "s3:*"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::*-loka-*",
+                "arn:aws:s3:::de-tech-assessment-2022",
+                "arn:aws:s3:::de-tech-assessment-2022/*"
             ]
         },
         {
@@ -68,7 +78,7 @@
             ],
             "Effect": "Allow",
             "Resource": [
-                "arn:aws:ssm:*:863243263380:parameter/cdk-bootstrap/*"
+                "arn:aws:ssm:*:{account_id}:parameter/cdk-bootstrap/*"
             ]
         },
         {
@@ -79,7 +89,7 @@
             ],
             "Effect": "Allow",
             "Resource": [
-                "arn:aws:ecr:*:863243263380:repository/cdk-*"
+                "arn:aws:ecr:*:{account_id}:repository/cdk-*"
             ]
         },
         {

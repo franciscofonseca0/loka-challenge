@@ -1,4 +1,4 @@
-# loka-challenge-dev
+# loka-challenge
 Repo for loka challenge
 
 # Requirements
@@ -12,7 +12,7 @@ Under the `airflow` and `aws_cdk` folder a `requirements.txt` is provided in cas
 ## Steps
 - Open AWS Console, as root user, and under the IAM panel create an `User`. Copy the `User ARN` into the `AWS_ROLE_ARN` var in the `.env` file.
 Choose an `username` and set `AWS Access type` as `Access key - Programmatic access`
-- Attach inline permissions, click on the json tab and copy the `iam_policy.json` provided in this repo. **NOTE**: in that json you will need to replace the '{account_id}' with your AWS account id number. The permissions in that json follow the `Least Priveliged` principle.
+- Attach inline permissions, click on the json tab and copy the `iam_policy.json` provided in this repo. **NOTE**: in that json you will need to replace the `'{account_id}'` with your AWS account id number. The permissions in that json follow the `Least Priveliged` principle.
 - Tags can be skipped, but once again in a production environment, should be set atleast a project and env tag. Which can then be used in the `Least Privelige` model.
 - Download the `.csv` with `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` and replace the corresponding vars in the `.env` file.
 Set as well the `AWS_DEFAULT_REGION`, e.g, `eu-central-1`.
