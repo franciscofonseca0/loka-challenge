@@ -57,16 +57,16 @@ Stages:
 *Raw Bucket*: 
 
 Data is partitioned by `date` and `event_type` and saved as `.parquet`:
-`raw_bucket/date=2019-06-01/event=create`
-`raw_bucket/date=2019-06-01/event=...`
+- `raw_bucket/date=2019-06-01/event=create`
+- `raw_bucket/date=2019-06-01/event=...`
 
 No transformations besides partitioning are done at this stage, which makes the ingestion simple and reliable.
 
 *Staging Bucket*:
 
 In this stage, the `data` field is flatten, and a folder is created per event_type, which is also partitioned by date:
-`staging_bucket/create_events/date=2019-06-01`
-`staging_bucket/register_events/date=2019-06-01`
+- `staging_bucket/create_events/date=2019-06-01`
+- `staging_bucket/register_events/date=2019-06-01`
 
 **DW**
 
