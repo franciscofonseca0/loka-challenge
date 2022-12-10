@@ -7,5 +7,3 @@ RUN npm install -g aws-cdk
 WORKDIR /app
 COPY ./aws_cdk .
 RUN pip install -r requirements.txt
-
-ENTRYPOINT [ "cdk" ]

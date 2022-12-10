@@ -7,4 +7,4 @@ def test_bucket_created():
     app = core.App()
     stack = StorageLayer(app, "aws-cdk-test")
     template = assertions.Template.from_stack(stack)
-    template.resource_count_is("AWS::S3::Bucket", 3)
+    template.resource_count_is("AWS::S3::Bucket", 2)

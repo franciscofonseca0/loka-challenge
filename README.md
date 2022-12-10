@@ -26,11 +26,16 @@ Deploy the `AWS Infrastucture`:
 
 ```bash
 docker build . -f aws_deploy.Dockerfile -t aws_deploy
-docker run --env-file=.env aws_deploy bootstrap
-docker run --env-file=.env aws_deploy deploy
+docker run --env-file=.env aws_deploy cdk bootstrap
+docker run --env-file=.env aws_deploy cdk deploy
 ```
 
 The bootstrap command will ramp up some necessaries resources for CDK in case your account does not have them.
+
+You can test the infrastructure by running:
+```bash
+docker run --env-file=.env aws_deploy pytest
+```
 
 Build `airflow` and `clickhouse` images:
 
