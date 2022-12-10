@@ -1,0 +1,5 @@
+apache-airflow==2.4.0
+awswrangler==2.18.0
+boto3==1.26.22
+clickhouse-driver==0.2.5
+mypy==0.991

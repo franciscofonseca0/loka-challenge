@@ -1,0 +1,96 @@
+{
+    "Statement": [
+        {
+            "Action": [
+                "cloudformation:DescribeStackEvents",
+                "cloudformation:DeleteStack",
+                "cloudformation:CreateChangeSet",
+                "cloudformation:DescribeChangeSet",
+                "cloudformation:ExecuteChangeSet",
+                "cloudformation:DescribeStacks",
+                "cloudformation:GetTemplate",
+                "cloudformation:DescribeStacks",
+                "cloudformation:DescribeStackEvents",
+                "cloudformation:DeleteChangeSet"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:cloudformation:*:863243263380:stack/*"
+            ]
+        },
+        {
+            "Action": [
+                "iam:GetRole",
+                "iam:UntagRole",
+                "iam:GetPolicy",
+                "iam:TagRole",
+                "iam:CreateRole",
+                "iam:DeleteRole",
+                "iam:AttachRolePolicy",
+                "iam:PutRolePolicy",
+                "iam:TagPolicy",
+                "iam:DetachRolePolicy",
+                "iam:DeleteRolePolicy",
+                "iam:UntagPolicy",
+                "iam:UpdateRole",
+                "iam:GetRolePolicy",
+                "iam:PassRole"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iam::863243263380:policy/*",
+                "arn:aws:iam::863243263380:role/cdk-*"
+            ]
+        },
+        {
+            "Action": [
+                "s3:PutEncryptionConfiguration",
+                "s3:PutBucketPublicAccessBlock",
+                "s3:PutBucketPolicy",
+                "s3:CreateBucket",
+                "s3:DeleteBucketPolicy",
+                "s3:DeleteBucket",
+                "s3:GetBucketPolicy",
+                "s3:PutBucketVersioning"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::cdk-*",
+                "arn:aws:s3:::*-loka-*"
+            ]
+        },
+        {
+            "Action": [
+                "ssm:PutParameter",
+                "ssm:DeleteParameter",
+                "ssm:GetParameters",
+                "ssm:GetParameter"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:ssm:*:863243263380:parameter/cdk-bootstrap/*"
+            ]
+        },
+        {
+            "Action": [
+                "ecr:DeleteRepository",
+                "ecr:DescribeRepositories",
+                "ecr:SetRepositoryPolicy"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:ecr:*:863243263380:repository/cdk-*"
+            ]
+        },
+        {
+            "Action": [
+                "ecr:CreateRepository"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "*"
+            ]
+        }
+    ],
+    "Version": "2012-10-17"
+}
