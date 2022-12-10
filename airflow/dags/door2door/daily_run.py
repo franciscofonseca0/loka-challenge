@@ -23,8 +23,7 @@ with DAG("door2door_daily",
 
     parse_daily_events_task = ShortCircuitOperator(
         task_id="parse_daily_events",
-        python_callable=parse_events,
-        retries=0
+        python_callable=parse_events
     )
 
     write_metadata_to_dw = PythonOperator(
@@ -55,7 +54,8 @@ with DAG("door2door_daily",
             python_callable=process_events,
             op_kwargs={
                 "event_type": event_type
-            }
+            },
+            retries=2
         )
         parse_daily_events_task.set_downstream(process_daily_event_task)
         process_daily_event_task.set_downstream(wait_for_completion)
