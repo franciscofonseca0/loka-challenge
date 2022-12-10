@@ -10,6 +10,7 @@ Under the `airflow` and `aws_cdk` folder a `requirements.txt` is provided in cas
 
 # AWS Setup
 ## Steps
+- Replace the `aws_account_id` in the `.env` file for the `RAW_BUCKET` and `STAGING_BUCKET` vars. This is required to guarantee unique naming for the buckets.
 - Open AWS Console, as root user, and under the IAM panel create an `User`. Copy the `User ARN` into the `AWS_ROLE_ARN` var in the `.env` file.
 Choose an `username` and set `AWS Access type` as `Access key - Programmatic access`
 - Attach inline permissions, click on the json tab and copy the `iam_policy.json` provided in this repo. **NOTE**: in that json you will need to replace the `'{account_id}'` with your AWS account id number. The permissions in that json follow the `Least Priveliged` principle.
@@ -17,24 +18,31 @@ Choose an `username` and set `AWS Access type` as `Access key - Programmatic acc
 - Download the `.csv` with `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` and replace the corresponding vars in the `.env` file.
 Set as well the `AWS_DEFAULT_REGION`, e.g, `eu-central-1`.
 
+# Airflow Setup
+Depending on the operating system you are running this project, some considerations must be taken. These are described [here](https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html).
+
 # Build & Run
-In order to simplify the interaction with `docker` a `Makefile` is provided
 Deploy the `AWS Infrastucture`:
 
 ```bash
-make aws_deploy
+docker build . -f aws_deploy.Dockerfile -t aws_deploy
+docker run --env-file=.env aws_deploy bootstrap
+docker run --env-file=.env aws_deploy deploy
 ```
+
+The bootstrap command will ramp up some necessaries resources for CDK in case your account does not have them.
 
 Build `airflow` and `clickhouse` images:
 
 ```bash
-make build_images
+docker-compose build
 ```
 
 Run the images:
 
 ```bash
-make run_images
+docker-compose up airflow-init
+docker-compose up
 ```
 
 Access the `airflow` webserver in `localhost:8080` with the credentials being user: `airflow`, pass: `airflow`
